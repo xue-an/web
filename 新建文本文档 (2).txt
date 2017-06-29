@@ -1,0 +1,5 @@
+github
+http://xue@git.innofast.net:8080/r/IMS.GIT
+https://github.com/xue-an/web.git
+xue-an
+git123456	
