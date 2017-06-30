@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C7804FB-15C7-4C3D-A88B-A8FCC8B3F088}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebUI.Controllers</RootNamespace>
+    <AssemblyName>WebUI.Controllers</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\LIB\excel\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\LIB\lucene\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\LIB\excel\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\LIB\excel\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\LIB\excel\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\LIB\excel\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu">
+      <HintPath>..\LIB\lucene\PanGu.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu.HighLight">
+      <HintPath>..\LIB\lucene\PanGu.HighLight.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu.Lucene.Analyzer">
+      <HintPath>..\LIB\lucene\PanGu.Lucene.Analyzer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack">
+      <HintPath>..\LIB\redis\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\LIB\redis\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.ServiceInterface">
+      <HintPath>..\LIB\redis\ServiceStack.ServiceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WXController.cs" />
+    <Compile Include="AdminController.cs" />
+    <Compile Include="AdminFilterController.cs" />
+    <Compile Include="HomeController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebUI.BLL\WebUI.BLL.csproj">
+      <Project>{741d1305-40f2-45ff-b97b-d23381f4e5f3}</Project>
+      <Name>WebUI.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.Common\WebUI.Common.csproj">
+      <Project>{d48e4a61-b77f-49ad-b9cd-eabdb63395ab}</Project>
+      <Name>WebUI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.DALFtory\WebUI.DALFtory.csproj">
+      <Project>{3239348a-3836-47ed-be30-72fb9ffdfbeb}</Project>
+      <Name>WebUI.DALFtory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.DAL\WebUI.DAL.csproj">
+      <Project>{27f4ea3a-b4e1-457b-bf45-de7491f9645d}</Project>
+      <Name>WebUI.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.IBLL\WebUI.IBLL.csproj">
+      <Project>{47c6913e-b0d5-488b-bbe7-d54110eebfe3}</Project>
+      <Name>WebUI.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.IDAL\WebUI.IDAL.csproj">
+      <Project>{bc53dd94-a495-454a-b58a-4e66fe7f49d7}</Project>
+      <Name>WebUI.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebUI.Model\WebUI.Model.csproj">
+      <Project>{20f7caf2-0152-49f8-ab6e-48202c1b861b}</Project>
+      <Name>WebUI.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

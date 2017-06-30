@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        a {
+         cursor:pointer;
+        }
+        th, td {
+         padding:30px;
+        }
+    </style>
+</head>
+<body ng-controller="mycontroller">
+    <a href="/Home/sqlbullcopy">sqlBullCopy</a>
+    <form action="/Home/sqlbullcopy" enctype="multipart/form-data">
+        <input type="file" id="fil" name="fi" />
+        <input type="submit" value="批量添加" />
+    </form>
+
+    <form method="post" action="/Home/red" enctype="multipart/form-data">
+        <input type="file" name="fileup"  />
+        <input type="submit" value="上传文件" />
+    </form>
+
+    <a ng-click="getexcel()">读取Excel文件</a>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    name
+                </th>
+                <th>
+                    age
+                </th>
+                <th>
+                    email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in excel">
+                <td>
+                    {{x[0]}}
+                </td>
+                <td>
+                    {{x[1]}}
+                </td>
+                <td>
+                    {{x[2]}}
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</body>
+
+
+
+</html>
+<script src="../Script/angular.js"></script>
+<script>
+  
+    var myapp = angular.module("myapp", []);
+    myapp.controller("mycontroller", ["$scope", "$http", function ($scope, $http) {
+
+        $scope.getexcel = function () {
+            $http.get("/Home/red", {
+                params: {
+
+                }
+            }).success(function (data, status, heading, config) {
+                
+                console.log(data);
+                //console.log(data);
+                //var ss = data.split('__');
+                //var fd = [];
+                //for (var i = 1; i < ss.length; i++)
+                //{
+                //    var a = ss[i].split(',');
+                //    fd.push(a);
+                //}
+                //console.log(fd);
+                $scope.excel = data;
+            })
+
+        }
+
+    }])
+
+
+</script>

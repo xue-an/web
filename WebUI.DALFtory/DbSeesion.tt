@@ -1,0 +1,90 @@
+﻿<#@ template language="C#" debug="false" hostspecific="true"#>
+<#@ include file="EF.Utility.CS.ttinclude"#><#@
+ output extension=".cs"#>
+ 
+<#
+
+CodeGenerationTools code = new CodeGenerationTools(this);
+MetadataLoader loader = new MetadataLoader(this);
+CodeRegion region = new CodeRegion(this, 1);
+MetadataTools ef = new MetadataTools(this);
+
+string inputFile = @"..\\WebUI.Model\\Model1.edmx";
+
+EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
+string namespaceName = code.VsNamespaceSuggestion();
+
+EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
+
+#>
+
+using System.Linq;
+using System.Text;
+
+using WebUI.IDAL;
+using WebUI.DAL;
+using System;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+namespace WebUI.DALFtory
+{
+    /// <summary>
+    /// DbSession:本质就是一个简单工厂，就是这么一个简单工厂，但从抽象意义上来说，它就是整个数据库访问层的统一入口。
+    /// 因为拿到了DbSession就能够拿到整个数据库访问层所有的dal。
+    /// </summary>
+    public partial class DbSession :IDbSession
+    {  
+<#
+// Emit Entity Types
+
+foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+{
+    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
+    //BeginNamespace(namespaceName, code);    
+#>	
+		private I<#=entity.Name#>Dal _<#=entity.Name#>Dal;
+		public I<#=entity.Name#>Dal <#=entity.Name#>Dal {
+            get {
+                if (_<#=entity.Name#>Dal == null)
+                {
+                    _<#=entity.Name#>Dal =new <#=entity.Name#>Dal();
+                }
+                return _<#=entity.Name#>Dal;
+            }
+        }
+<#}#>
+
+
+        public DbContext Db
+        {
+            get { return EFDbContextFactory.GetCurrentDbContext(); }//完成EF上下文创建
+        }
+   
+      public int SaveChanges()
+        {
+
+     
+            return Db.SaveChanges();
+
+        }
+
+
+		        /// <summary>
+        /// ef的sql语句
+        /// </summary>
+        /// <param name="sql">select delete from</param>
+        /// <param name="pars">参数；</param>
+        /// <returns></returns>
+         public int ExecuteSql(string sql,params SqlParameter[] pars)
+        {
+            
+            return Db.Database.ExecuteSqlCommand(sql, pars);
+        }
+        public List<T> ExecuteQuery<T>(string sql, params System.Data.SqlClient.SqlParameter[] pars)
+        {
+            return Db.Database.SqlQuery<T>(sql, pars).ToList();
+        }
+
+	}	
+}

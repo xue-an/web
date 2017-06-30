@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        .div1 {
+     display: -moz-box;  /* Firefox */ 
+  display: -ms-flexbox;    /* IE10 */ 
+  display: -webkit-box;    /* Safari */  
+  display: -webkit-flex;    /* Chrome, WebKit */ 
+  display: box;  
+  display: flexbox;  
+  display: flex;   
+  width: 100%;  
+  height: 100%;  
+  background-color: gray;
+
+/*作者：郭爽
+链接：http://www.zhihu.com/question/22991944/answer/63604478
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。*/
+        }
+        .a {
+            background:red;
+        }
+        .b {
+         border:1px solid green;
+        }
+            .div1 div {
+              width:150px;
+              box-sizing:border-box;
+                 -webkit-box-flex:1;
+          
+     border:1px solid red;
+             /*-webkit-box-pack:center;
+             text-align:center;
+             border:1px solid red;
+             -webkit-box-flex:1;*/
+            }
+    </style>
+</head>
+<body ng-app="myapp" ng-controller="mycontroller">
+    <div>
+        <input type="button" ng-click="getfun()" value="点击" />
+    </div>
+    <div class="f" ng-class="{'a b':vm.min==true}">aaa</div>
+
+ <button>我点</button>
+
+</body>
+</html>
+<script src="../Script/angular.js"></script>
+<script>
+    var myapp = angular.module('myapp', []);
+    myapp.controller("mycontroller", function ($scope) {
+
+        var vm = $scope.vm = {};
+        $scope.getfun = function () {
+            vm.min = true;
+        }
+       
+    })
+
+</script>
